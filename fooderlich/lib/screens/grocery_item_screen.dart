@@ -109,7 +109,7 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
           children: [
             buildNameField(),
             buildImportanceField(),
-            // TODO 15: Add date picker
+            buildDateField(context),
             // TODO 16: Add time picker
             // TODO 17: Add color picker
             // TODO 18: Add slider
@@ -217,6 +217,51 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
   }
 
   // TODO: ADD buildDateField()
+  Widget buildDateField(BuildContext context) {
+    // Adds a Column to lay out elements vertically.
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Adds a Row to lay out elements horizontally.
+        Row(
+          // Adds a space between elements in the row.
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            // Adds the date Text.
+            Text(
+              'Date',
+              style: GoogleFonts.lato(fontSize: 28.0),
+            ),
+            // Adds a TextButton to confirm the selected value.
+            TextButton(
+              child: const Text('Select'),
+              // Gets the current date when the user presses the button.
+              onPressed: () async {
+                final currentDate = DateTime.now();
+                // Presents the date picker. You restrict the date picker
+                // and only allow the user to pick a date from today
+                // until five years in the future.
+                final selectedDate = await showDatePicker(
+                  context: context,
+                  initialDate: currentDate,
+                  firstDate: currentDate,
+                  lastDate: DateTime(currentDate.year + 5),
+                );
+                // Sets _dueDate after the user selects a date.
+                setState(() {
+                  if (selectedDate != null) {
+                    _dueDate = selectedDate;
+                  }
+                });
+              },
+            ),
+          ],
+        ),
+        // Format the current date and display it with a Text.
+        Text('${DateFormat('yyyy-MM-dd').format(_dueDate)}'),
+      ],
+    );
+  }
 
   // TODO: Add buildTimeField()
 
