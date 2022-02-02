@@ -79,8 +79,45 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO 12: Add GroceryItemScreen Scaffold
-    return Container(color: Colors.orange);
+    // Scaffold defines the main layout and structure of the entire screen.
+    return Scaffold(
+      // Includes an app bar with one action button.
+      // The user will tap this button when they’ve finished creating an item.
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.check),
+            onPressed: () {
+              // TODO 24: Add callback handler
+            },
+          )
+        ],
+        // Sets elevation to 0.0, removing the shadow under the app bar.
+        elevation: 0.0,
+        // Sets the title of the app bar.
+        title: Text(
+          'Grocery Item',
+          style: GoogleFonts.lato(fontWeight: FontWeight.w600),
+        ),
+      ),
+      // Shows a ListView, padded by 16 pixels on every side,
+      // within the body of the scaffold. You’ll fill this list view with
+      // a bunch of interactive widgets soon.
+      body: Container(
+        padding: const EdgeInsets.all(16.0),
+        child: ListView(
+          children: [
+            // TODO 13: Add name TextField
+            // TODO 14: Add Importance selection
+            // TODO 15: Add date picker
+            // TODO 16: Add time picker
+            // TODO 17: Add color picker
+            // TODO 18: Add slider
+            // TODO 19: Add Grocery Tile
+          ],
+        ),
+      ),
+    );
   }
 
   // TODO: Add buildNameField()
