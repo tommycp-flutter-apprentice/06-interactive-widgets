@@ -108,7 +108,7 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
         child: ListView(
           children: [
             buildNameField(),
-            // TODO 14: Add Importance selection
+            buildImportanceField(),
             // TODO 15: Add date picker
             // TODO 16: Add time picker
             // TODO 17: Add color picker
@@ -157,7 +157,64 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
     );
   }
 
-  // TODO: Add buildImportanceField()
+  Widget buildImportanceField() {
+    // Use a Column to lay out the widgets vertically.
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Add Text.
+        Text(
+          'Importance',
+          style: GoogleFonts.lato(fontSize: 28.0),
+        ),
+        // Add Wrap and space each child widget 10 pixels apart.
+        // Wrap lays out children horizontally. When there’s no more room,
+        // it wraps to the next line.
+        Wrap(
+          spacing: 10.0,
+          children: [
+            // Create a ChoiceChip for the user to select the low priority.
+            ChoiceChip(
+              // Set the selected chip’s background color to black.
+              selectedColor: Colors.black,
+              // Check whether the user selected this ChoiceChip.
+              selected: _importance == Importance.low,
+              label: const Text(
+                'low',
+                style: TextStyle(color: Colors.white),
+              ),
+              // Update _importance, if the user selected this choice.
+              onSelected: (selected) {
+                setState(() => _importance = Importance.low);
+              },
+            ),
+            ChoiceChip(
+              selectedColor: Colors.black,
+              selected: _importance == Importance.medium,
+              label: const Text(
+                'medium',
+                style: TextStyle(color: Colors.white),
+              ),
+              onSelected: (selected) {
+                setState(() => _importance = Importance.medium);
+              },
+            ),
+            ChoiceChip(
+              selectedColor: Colors.black,
+              selected: _importance == Importance.high,
+              label: const Text(
+                'high',
+                style: TextStyle(color: Colors.white),
+              ),
+              onSelected: (selected) {
+                setState(() => _importance = Importance.high);
+              },
+            ),
+          ],
+        )
+      ],
+    );
+  }
 
   // TODO: ADD buildDateField()
 
