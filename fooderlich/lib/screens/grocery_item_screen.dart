@@ -89,7 +89,30 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
           IconButton(
             icon: const Icon(Icons.check),
             onPressed: () {
-              // TODO 24: Add callback handler
+              // When the user taps Save, you take all the state
+              // properties and create a GroceryItem.
+              final groceryItem = GroceryItem(
+                id: widget.originalItem?.id ?? const Uuid().v1(),
+                name: _nameController.text,
+                importance: _importance,
+                color: _currentColor,
+                quantity: _currentSliderValue,
+                date: DateTime(
+                  _dueDate.year,
+                  _dueDate.month,
+                  _dueDate.day,
+                  _timeOfDay.hour,
+                  _timeOfDay.minute,
+                ),
+              );
+
+              if (widget.isUpdating) {
+                // If the user is updating an existing item, call onUpdate.
+                widget.onUpdate(groceryItem);
+              } else {
+                // If the user is creating a new item, call onCreate.
+                widget.onCreate(groceryItem);
+              }
             },
           )
         ],
@@ -234,7 +257,6 @@ class _GroceryItemScreenState extends State<GroceryItemScreen> {
     );
   }
 
-  // TODO: ADD buildDateField()
   Widget buildDateField(BuildContext context) {
     // Adds a Column to lay out elements vertically.
     return Column(
