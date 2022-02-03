@@ -1,13 +1,9 @@
 import 'package:flutter/painting.dart';
 
-// Importance is an enum that you’ll use to tag the importance of an item: low, medium or high.
 enum Importance { low, medium, high }
 
 class GroceryItem {
-  // Each GroceryItem must have a unique id to differentiate the items from one other.
   final String id;
-  // A user can set the name, level of importance, color label,
-  // quantity and date, as well as marking completed items.
   final String name;
   final Importance importance;
   final Color color;

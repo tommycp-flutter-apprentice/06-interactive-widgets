@@ -14,9 +14,10 @@ class Fooderlich extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = FooderlichTheme.light();
     return MaterialApp(
-      theme: theme,
+      theme: FooderlichTheme.light(),
+      darkTheme: FooderlichTheme.dark(),
+      themeMode: ThemeMode.system,
       title: 'Fooderlich',
       // You assign MultiProvider as a property of Home. This accepts
       // a list of providers for Home’s descendant widgets to access.
