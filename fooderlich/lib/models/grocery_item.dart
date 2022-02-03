@@ -1,11 +1,7 @@
 import 'package:flutter/painting.dart';
 
 // Importance is an enum that you’ll use to tag the importance of an item: low, medium or high.
-enum Importance {
-  low,
-  medium,
-  high,
-}
+enum Importance { low, medium, high }
 
 class GroceryItem {
   // Each GroceryItem must have a unique id to differentiate the items from one other.
@@ -26,7 +22,7 @@ class GroceryItem {
     required this.color,
     required this.quantity,
     required this.date,
-    required this.isComplete,
+    this.isComplete = false,
   });
 
   // copyWith copies and creates a completely new instance of GroceryItem.
