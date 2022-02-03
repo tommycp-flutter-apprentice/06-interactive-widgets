@@ -25,11 +25,56 @@ class GroceryTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO 21: Change this Widget
-    return Container(
+    return SizedBox(
       height: 100.0,
-      // TODO 20: Replace this color
-      color: Colors.red,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          // Add a Row to lay out elements in the horizontal direction.
+          Row(
+            children: [
+              // Add a container widget with the item’s color.
+              // This helps to color-code items.
+              Container(width: 5.0, color: item.color),
+              // Space the elements 16 pixels apart.
+              const SizedBox(width: 16.0),
+              // Add a Column to lay out elements in the vertical direction.
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Lay out elements spaced 4 pixels apart in the following
+                  // order: item name, date and importance.
+                  Text(
+                    item.name,
+                    style: GoogleFonts.lato(
+                        decoration: textDecoration,
+                        fontSize: 21.0,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 4.0),
+                  buildDate(),
+                  const SizedBox(height: 4.0),
+                  buildImportance(),
+                ],
+              ),
+            ],
+          ),
+          // Add a Row to lay out elements in the horizontal direction.
+          Row(
+            children: [
+              // Then add a Text to display the item’s quantity.
+              Text(
+                item.quantity.toString(),
+                style: GoogleFonts.lato(
+                    decoration: textDecoration, fontSize: 21.0),
+              ),
+              // Finally, add the checkbox.
+              buildCheckbox(),
+            ],
+          )
+        ],
+      ),
     );
   }
 
